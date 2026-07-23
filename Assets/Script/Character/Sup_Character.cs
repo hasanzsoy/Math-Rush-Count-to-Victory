@@ -1,16 +1,20 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Sup_Character : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    GameObject target;
+    NavMeshAgent _Navmesh;
+
     void Start()
     {
-        
+        _Navmesh = GetComponent<NavMeshAgent>();
+        target = GameObject.FindWithTag("GameManager")
+            .GetComponent<GameManager>().Destination;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        _Navmesh.SetDestination(target.transform.position);
     }
 }
